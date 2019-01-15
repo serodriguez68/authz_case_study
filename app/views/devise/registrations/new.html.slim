@@ -1,5 +1,12 @@
 h2 Sign up
 = form_for(@user, url: user_registration_path) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this client from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+
   .field
     = label_tag :name
     br

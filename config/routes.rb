@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  resources :clients, only: [:index, :show, :edit, :update]
+
 end

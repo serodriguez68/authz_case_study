@@ -1,0 +1,15 @@
+h1
+  i.fi-torso.large&nbsp
+  span = "#{@client.name}'s Profile"
+
+p
+  strong ID:&nbsp
+  = @client.id
+p
+  strong Email:&nbsp
+  = @client.user_email
+p
+  strong Client Since:&nbsp
+  = l @client.created_at, format: :long
+
+= link_to 'Edit', edit_client_path(@client)

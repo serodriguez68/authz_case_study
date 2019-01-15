@@ -1,0 +1,21 @@
+h1 Listing clients
+
+table
+  thead
+    tr
+      th ID
+      th Name
+      th email
+      th Signed Up
+      th
+      th
+
+  tbody
+    - @clients.each do |client|
+      tr
+        td = client.id
+        td = client.name
+        td = client.user_email
+        td = l client.created_at.to_date, format: :long
+        td = link_to 'Show', client
+        td = link_to 'Edit', edit_client_path(client)

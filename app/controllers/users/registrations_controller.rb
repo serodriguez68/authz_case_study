@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       sign_up(:user, @user)
       redirect_to root_url
     else
-      render new
+      render 'devise/registrations/new'
     end
   end
 
