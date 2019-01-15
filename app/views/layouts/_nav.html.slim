@@ -2,8 +2,8 @@ nav
   ul.menu
     li.menu-text
       small = "#{current_user.email}"
-    li = 'Blaaaaa'
-    li = 'Blaaaaa'
-    li = 'Blaaaaa'
-    li = 'Blaaaaa'
-    li = 'Blaaaaa'
+    li = link_to 'My Client Profile', '#'
+    li = link_to 'My Driver Profile', '#'
+    li = link_to 'Services', '#'
+    li = link_to 'Cities', '#'
+    li = link_to "Logout", destroy_user_session_path, method: :delete

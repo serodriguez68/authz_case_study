@@ -1,12 +1,16 @@
+p.text-right
+  'Already have an account?
+  = link_to 'Log In', new_user_session_path
+
 h1.text-center Welcome to RUbber!
 .grid-x
   .cell.medium-6
     .callout.primary.text-center
-      h2 I need a ride
+      = link_to 'I need a ride', new_user_registration_path(type: 'client'), class: 'button large expanded'
 
   .cell.medium-6
     .callout.secondary.text-center
-      h2 I want to drive
+      = link_to 'I want to drive', new_user_registration_path(type: 'driver'), class: 'button large expanded secondary'
 hr
 .grid-x
   .cell.small-12.text-center

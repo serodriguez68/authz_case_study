@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'visitors/about'
 
   # Requires Log-in
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
 end

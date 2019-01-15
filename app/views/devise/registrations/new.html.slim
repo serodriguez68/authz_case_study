@@ -1,0 +1,27 @@
+h2 Sign up
+= form_for(@user, url: user_registration_path) do |f|
+  .field
+    = label_tag :name
+    br
+    = text_field_tag 'type[name]', '', autofocus: true, required: true
+
+  .field
+    = f.label :email
+    br
+    = f.email_field  :email, autocomplete: "email", required: true
+
+  .field
+    = f.label :password
+    br
+    = f.password_field  :password , autocomplete: "new-password", min: 7
+
+  .field
+    = f.label :password_confirmation
+    br
+    = f.password_field :password_confirmation, autocomplete: "new-password", min: 7
+
+  .actions
+    = hidden_field_tag 'type[type]', params[:type]
+    = submit_tag "Sign up"
+
+= render "devise/shared/links"
