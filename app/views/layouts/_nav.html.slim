@@ -1,9 +1,21 @@
-nav
-  ul.menu
-    li.menu-text
-      small = "#{current_user.email}"
-    li = link_to 'My Client Profile', '#'
-    li = link_to 'My Driver Profile', '#'
-    li = link_to 'Services', '#'
-    li = link_to 'Cities', '#'
-    li = link_to "Logout", destroy_user_session_path, method: :delete
+nav.top-bar
+  .top-bar-left
+    ul.menu
+      li.menu-text RUbber
+      li = link_to 'Services', '#'
+      li = link_to 'Clients', '#'
+      li = link_to 'Drivers', '#'
+      li = link_to 'Cities', '#'
+      li = link_to 'Authz Manager', '#'
+
+  .top-bar-right
+    ul.menu.dropdown data-dropdown-menu=''
+      li
+        a href='#'
+          i.fi-torso.large
+          span &nbsp
+          span = current_user.email
+        ul.menu
+          li = link_to 'My Client Profile', '#'
+          li = link_to 'My Driver Profile', '#'
+          li = link_to "Logout", destroy_user_session_path, method: :delete
