@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_one :client, dependent: :destroy
   has_one :driver, dependent: :destroy
+  has_one :staff_member, dependent: :destroy
 end

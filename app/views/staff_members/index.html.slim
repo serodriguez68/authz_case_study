@@ -1,0 +1,25 @@
+h1 Listing Staff
+
+= link_to 'New Staff member', new_staff_member_path, class: 'button'
+
+table
+  thead
+    tr
+      th U.ID
+      th Staff.ID
+      th Name
+      th Email
+      th Joined On
+      th
+
+  tbody
+    - @staff_members.each do |sm|
+      tr
+        td = sm.user_id
+        td = sm.id
+        td = sm.name
+        td = sm.user_email
+        td = l sm.created_at.to_date, format: :short
+        td = link_to 'Edit Profile', edit_staff_member_path(sm)
+
+

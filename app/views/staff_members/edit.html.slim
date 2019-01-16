@@ -1,0 +1,20 @@
+h1
+  i.fi-torso.large&nbsp
+  span = "Editing #{@staff_member.name}'s Staff Profile"
+
+= form_for @staff_member do |f|
+  - if @staff_member.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@staff_member.errors.count, "error")} prohibited this staff_member from being saved:"
+      ul
+        - @staff_member.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+  .actions = f.submit 'Update Profile', class: 'button'
+
+= link_to 'Back', _back_url
+

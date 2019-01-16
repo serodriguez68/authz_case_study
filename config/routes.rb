@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # Public
   root to: 'visitors#index'
   get 'visitors/about'
@@ -22,4 +21,6 @@ Rails.application.routes.draw do
       patch :driver_finish
     end
   end
+
+  resources :staff_members, except: [:show, :destroy]
 end

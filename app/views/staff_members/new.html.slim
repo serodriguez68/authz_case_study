@@ -1,0 +1,35 @@
+h1 New Staff Member
+.callout.secondary
+
+  p
+    i.fi-info.large&nbsp
+    ' You will create a staff member account on behalf to the user and then he/she
+    ' must change her password.
+= form_for(@user, url: staff_members_path) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this client from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = label_tag :name
+    = text_field_tag 'staff_member[name]', '', autofocus: true, required: true
+
+  .field
+    = f.label :email
+    = f.email_field  :email, autocomplete: "email", required: true
+
+  .field
+    = f.label :password, 'Temporary Password'
+    = f.password_field  :password , autocomplete: "new-password", min: 7
+
+  .field
+    = f.label :password_confirmation, 'Temporary Password Confirmation'
+    = f.password_field :password_confirmation, autocomplete: "new-password", min: 7
+
+  .actions
+    = submit_tag "Create Staff Member", class: 'button success'
+
+= link_to 'Back', _back_url
