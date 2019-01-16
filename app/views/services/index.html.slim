@@ -5,11 +5,10 @@ h1 Listing services
 table
   thead
     tr
-      th S.ID
+      th ID
       th Client
       th City
-      th Pickup
-      th Drop off
+      th Trip
       th Status
       th Driver
       th
@@ -23,10 +22,13 @@ table
         td = s.id
         td = s.client_name
         td = s.city_name
-        td = s.pickup_address
-        td = s.drop_off_address
         td
-          = s.status
+          small = "From: #{s.pickup_address}"
+          br
+          small = "To: #{s.drop_off_address}"
+        td
+          em
+            small = s.status
           br
           small = requested_on_info(s)
 
