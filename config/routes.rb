@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   }
 
   resources :clients, only: [:index, :show, :edit, :update]
-
+  resources :drivers, only: [:index, :show, :edit, :update]
 end

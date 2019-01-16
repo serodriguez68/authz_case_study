@@ -1,0 +1,21 @@
+h1 Listing Drivers
+
+table
+  thead
+    tr
+      th ID
+      th Name
+      th email
+      th Driver Since
+      th
+      th
+
+  tbody
+    - @drivers.each do |driver|
+      tr
+        td = driver.id
+        td = driver.name
+        td = driver.user_email
+        td = l driver.created_at.to_date, format: :long
+        td = link_to 'Show', driver
+        td = link_to 'Edit', edit_driver_path(driver)

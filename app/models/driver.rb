@@ -3,4 +3,6 @@ class Driver < ApplicationRecord
 
   validates :name, presence: true
   validates :user_id, uniqueness: true
+
+  delegate :email, to: :user, prefix: true
 end

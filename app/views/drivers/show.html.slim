@@ -1,0 +1,15 @@
+h1
+  i.fi-torso.large&nbsp
+  span = "#{@driver.name}'s Driver Profile"
+
+p
+  strong Driver ID:&nbsp
+  = @driver.id
+p
+  strong Email:&nbsp
+  = @driver.user_email
+p
+  strong Driver Since:&nbsp
+  = l @driver.created_at, format: :long
+
+= link_to 'Edit', edit_driver_path(@driver)
