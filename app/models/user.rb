@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include Authz::Models::Rolable
+  authz_label_method :email
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

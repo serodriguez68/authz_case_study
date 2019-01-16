@@ -1,4 +1,6 @@
 class City < ApplicationRecord
+  include ScopableByCity
+
   has_many :services
   has_many :clients, through: :services
   has_many :drivers, through: :services

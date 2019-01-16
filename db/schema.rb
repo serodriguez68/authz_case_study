@@ -10,7 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_085247) do
+ActiveRecord::Schema.define(version: 2019_01_16_125220) do
+
+  create_table "authz_business_process_has_controller_actions", force: :cascade do |t|
+    t.integer "authz_controller_action_id"
+    t.integer "authz_business_process_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authz_business_process_id"], name: "authz_bphca_business_process_index"
+    t.index ["authz_controller_action_id"], name: "authz_bphca_controller_action_index"
+  end
+
+  create_table "authz_business_processes", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "authz_controller_actions", force: :cascade do |t|
+    t.string "controller"
+    t.string "action"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "authz_role_grants", force: :cascade do |t|
+    t.integer "authz_role_id", null: false
+    t.string "rolable_type", null: false
+    t.integer "rolable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authz_role_id"], name: "authz_role_grants_role_index"
+    t.index ["rolable_type", "rolable_id"], name: "authz_role_grants_rolable_index"
+  end
+
+  create_table "authz_role_has_business_processes", force: :cascade do |t|
+    t.integer "authz_business_process_id"
+    t.integer "authz_role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authz_business_process_id"], name: "authz_rhbp_business_process_index"
+    t.index ["authz_role_id"], name: "authz_rhbp_role_index"
+  end
+
+  create_table "authz_roles", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "authz_scoping_rules", force: :cascade do |t|
+    t.string "scopable"
+    t.integer "authz_role_id", null: false
+    t.string "keyword"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authz_role_id"], name: "index_authz_scoping_rules_on_authz_role_id"
+    t.index ["keyword"], name: "index_authz_scoping_rules_on_keyword"
+    t.index ["scopable"], name: "index_authz_scoping_rules_on_scopable"
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string "name"

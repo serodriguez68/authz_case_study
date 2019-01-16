@@ -1,4 +1,7 @@
 class Client < ApplicationRecord
+  include ScopableByClient
+  include ScopableByCity
+
   belongs_to :user
   has_many :services
   has_many :cities, through: :services

@@ -1,4 +1,8 @@
 class Service < ApplicationRecord
+  include ScopableByClient
+  include ScopableByCity
+  include ScopableByDriver
+
   PINGING_DRIVER = 'PINGING DRIVER'
   ONGOING = 'ONGOING'
   FINISHED = 'FINISHED'

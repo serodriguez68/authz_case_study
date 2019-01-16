@@ -1,4 +1,6 @@
 class Driver < ApplicationRecord
+  include ScopableByDriver
+
   belongs_to :user
   has_many :services
   has_many :cities, through: :services
