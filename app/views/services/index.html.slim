@@ -1,0 +1,52 @@
+h1 Listing services
+
+= link_to 'Request Service', new_service_path, class: 'button success'
+
+table
+  thead
+    tr
+      th S.ID
+      th Client
+      th City
+      th Pickup
+      th Drop off
+      th Status
+      th Driver
+      th
+      th
+      th
+      th
+
+  tbody
+    - @services.each do |s|
+      tr
+        td = s.id
+        td = s.client_name
+        td = s.city_name
+        td = s.pickup_address
+        td = s.drop_off_address
+        td
+          = s.status
+          br
+          small = requested_on_info(s)
+
+          - if s.cancelled_on
+            br
+            small = cancelled_on_info(s)
+
+          - if s.accepted_on
+            br
+            small = accepted_on_info(s)
+
+          - if s.finished_on
+              br
+              small = finished_on_info(s)
+
+        td = safe_driver_name(s)
+        td = link_to 'Cancel', client_cancel_service_path(s), class: 'alert small  button',   method: :patch if s.can_cancel?
+        td = link_to 'Accept', driver_accept_service_path(s), class: 'small  button success', method: :patch if s.can_accept?
+        td = link_to 'Reject', driver_reject_service_path(s), class: 'small  button warning', method: :patch if s.can_reject?
+        td = link_to 'Finish', driver_finish_service_path(s), class: 'small  button', method: :patch if s.can_finish?
+
+
+

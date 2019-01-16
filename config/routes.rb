@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # Public
   root to: 'visitors#index'
   get 'visitors/about'
@@ -12,4 +13,13 @@ Rails.application.routes.draw do
   resources :clients, only: [:index, :show, :edit, :update]
   resources :drivers, only: [:index, :show, :edit, :update]
   resources :cities, except: [:show]
+
+  resources :services, only: [:new, :create, :index] do
+    member do
+      patch :client_cancel
+      patch :driver_accept
+      patch :driver_reject
+      patch :driver_finish
+    end
+  end
 end

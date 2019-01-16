@@ -1,0 +1,25 @@
+h1 New service
+
+= form_for @service do |f|
+  - if @service.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@service.errors.count, "error")} prohibited this service from being saved:"
+      ul
+        - @service.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :client
+    = f.collection_select :client_id, Client.all.order(name: :asc), :id, :name
+  .field
+    = f.label :city
+    = f.collection_select :city_id, City.all.order(name: :asc), :id, :name
+  .field
+    = f.label :pickup_address
+    = f.text_field :pickup_address, required: true
+  .field
+    = f.label :drop_off_address
+    = f.text_field :drop_off_address, required: true
+  .actions = f.submit class: 'button success'
+
+= link_to 'Back', _back_url
