@@ -24,8 +24,8 @@ Rails.application.routes.draw do
 
   resources :staff_members, except: [:show, :destroy]
 
-  Rails.application.routes.draw do
-    mount Authz::Engine => '/authz'
-  end
+
+  mount Authz::Engine => '/authz', as: 'authz'
+
 
 end

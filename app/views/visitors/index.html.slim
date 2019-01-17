@@ -12,6 +12,7 @@ h1.text-center Welcome to RUbber!
     .callout.secondary.text-center
       = link_to 'I want to drive', new_user_registration_path(type: 'driver'), class: 'button large expanded secondary'
 hr
+
 .grid-x
   .cell.small-12.text-center
     h3 About this Case Study
@@ -25,3 +26,27 @@ hr
     a.button.large.expanded href="https://github.com/serodriguez68/authz" target="_blank" Learn more about Authz
   .cell.small-6
     = link_to 'Learn more about this Case Study', visitors_about_path, class: 'button large expanded secondary'
+
+.grid-x
+  .cell.small-12
+    h3.text-center How to use this demo
+    p
+      ' Use this demo along with
+      a href='https://github.com/serodriguez68/authz_case_study' the source code&nbsp;
+      ' to understand how Authz does its job.
+      ' Start by logging in with users that have different roles and
+      ' notice how the app changes based on the role.
+      strong All passwords are "123456789".
+
+    p
+      ' Then login with a user with the "Authorization Administrator" role and visit the
+      = link_to 'Authz Admin Panel', authz_path
+      '&nbsp; to see how easy it is to manage your authorization within the panel.
+
+  .cell.small-12
+    = render 'user_info', users: @users
+
+
+
+
+

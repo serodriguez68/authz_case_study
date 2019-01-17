@@ -1,0 +1,9 @@
+table
+  thead
+    th Email
+    th Roles
+  tbody
+    - users.each do |u|
+      tr
+        td = u.email
+        td = u.roles.pluck(:name).join(', ')
