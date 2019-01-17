@@ -5,7 +5,7 @@ module ScopableByDriver
   end
 
   def self.resolve_keyword(keyword, requester)
-    if keyword.downcase == 'Mine'
+    if keyword == 'Mine'
       [requester.client.id]
     end
   end
