@@ -65,8 +65,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'slim-rails'
+gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 gem "autoprefixer-rails"
 gem 'sprockets-es6'
-gem 'authz', path: '../authz'
