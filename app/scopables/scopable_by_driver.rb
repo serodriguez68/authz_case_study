@@ -6,7 +6,7 @@ module ScopableByDriver
 
   def self.resolve_keyword(keyword, requester)
     if keyword == 'Mine'
-      [requester.client.id]
+      [requester.driver.id]
     end
   end
 end
