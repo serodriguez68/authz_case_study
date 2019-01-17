@@ -17,7 +17,7 @@ nav.top-bar
           span &nbsp
           span = current_user.email
         ul.menu
-          li = link_to 'My Client Profile', client_path(current_client) if current_client
-          li = link_to 'My Driver Profile', driver_path(current_driver) if current_driver
+          li = authz_link_to('My Client Profile', client_path(current_client), {}, using: current_client) if current_client
+          li = authz_link_to('My Driver Profile', driver_path(current_driver), {}, using: current_driver) if current_driver
           li = link_to 'Change Password', edit_user_registration_path(current_user)
           li = link_to "Logout", destroy_user_session_path, method: :delete
