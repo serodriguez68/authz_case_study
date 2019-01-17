@@ -10,10 +10,10 @@ h1 New service
 
   .field
     = f.label :client
-    = f.collection_select :client_id, Client.all.order(name: :asc), :id, :name
+    = f.collection_select :client_id, apply_authz_scopes(on: Client).distinct.order(name: :asc), :id, :name
   .field
     = f.label :city
-    = f.collection_select :city_id, City.all.order(name: :asc), :id, :name
+    = f.collection_select :city_id, apply_authz_scopes(on: City).order(name: :asc), :id, :name
   .field
     = f.label :pickup_address
     = f.text_field :pickup_address, required: true
