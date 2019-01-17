@@ -1,29 +1,34 @@
 class ClientsController < ApplicationController
-
+  around_action :verify_authorized
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.includes(:user).all
+    authorize skip_scoping: true
+    @clients = apply_authz_scopes(on: Client).includes(:user).all
   end
 
   # GET /clients/1
   # GET /clients/1.json
   def show
     @client = Client.find(params[:id])
+    authorize using: @client
   end
-
 
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
+    authorize using: @client
   end
 
   # PATCH/PUT /clients/1
   # PATCH/PUT /clients/1.json
   def update
     @client = Client.find(params[:id])
+    @client.assign_attributes(client_params)
+    authorize using: @client
+
     respond_to do |format|
-      if @client.update(client_params)
+      if @client.save(client_params)
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
         format.json { render :show, status: :ok, location: @client }
       else

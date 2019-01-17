@@ -17,5 +17,5 @@ table
         td = client.name
         td = client.user_email
         td = l client.created_at.to_date, format: :long
-        td = link_to 'Show', client
-        td = link_to 'Edit', edit_client_path(client)
+        td = authz_link_to 'Show', client, {}, using: client
+        td = authz_link_to 'Edit', edit_client_path(client), {}, using: client

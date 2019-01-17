@@ -12,4 +12,4 @@ p
   strong Client Since:&nbsp
   = l @client.created_at, format: :long
 
-= link_to 'Edit', edit_client_path(@client)
+= authz_link_to 'Edit', edit_client_path(@client), using: @client
