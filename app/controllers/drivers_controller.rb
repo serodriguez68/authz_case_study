@@ -1,27 +1,34 @@
 class DriversController < ApplicationController
+  around_action :verify_authorized
   # GET /drivers
   # GET /drivers.json
   def index
-    @drivers = Driver.includes(:user).all
+    authorize skip_scoping: true
+    @drivers = apply_authz_scopes(on: Driver).includes(:user).all
   end
 
   # GET /drivers/1
   # GET /drivers/1.json
   def show
     @driver = Driver.find(params[:id])
+    authorize using: @driver
   end
 
   # GET /drivers/1/edit
   def edit
     @driver = Driver.find(params[:id])
+    authorize using: @driver
   end
 
   # PATCH/PUT /drivers/1
   # PATCH/PUT /drivers/1.json
   def update
     @driver = Driver.find(params[:id])
+    @driver.assign_attributes(driver_params)
+    authorize using: @driver
+
     respond_to do |format|
-      if @driver.update(driver_params)
+      if @driver.save(driver_params)
         format.html { redirect_to @driver, notice: 'Driver was successfully updated.' }
         format.json { render :show, status: :ok, location: @driver }
       else

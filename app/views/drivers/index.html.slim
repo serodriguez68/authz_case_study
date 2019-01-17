@@ -17,5 +17,5 @@ table
         td = driver.name
         td = driver.user_email
         td = l driver.created_at.to_date, format: :long
-        td = link_to 'Show', driver
-        td = link_to 'Edit', edit_driver_path(driver)
+        td = authz_link_to 'Show', driver, using: driver
+        td = authz_link_to 'Edit', edit_driver_path(driver), using: driver
