@@ -1,14 +1,15 @@
 class ServicesController < ApplicationController
-
+  around_action :verify_authorized
   # GET /services
   # GET /services.json
   def index
+    authorize skip_scoping: true
     @services = apply_authz_scopes(on: Service).includes(:client, :city, :driver).all
   end
-
-
+  
   # GET /services/new
   def new
+    authorize skip_scoping: true
     @service = Service.new
   end
 
@@ -16,6 +17,7 @@ class ServicesController < ApplicationController
   # POST /services.json
   def create
     @service = Service.new(service_params)
+    authorize using: @service
 
     if @service.save
       @service.assign_driver!
@@ -27,6 +29,8 @@ class ServicesController < ApplicationController
 
   def client_cancel
     @service = Service.find params[:id]
+    authorize using: @service
+
     if @service.cancel
       redirect_to services_url, notice: 'Service Cancelled'
     else
@@ -36,6 +40,8 @@ class ServicesController < ApplicationController
 
   def driver_accept
     @service = Service.find params[:id]
+    authorize using: @service
+
     if @service.accept
       redirect_to services_url, notice: 'Service Accepted. Please go and pick the client up'
     else
@@ -45,6 +51,8 @@ class ServicesController < ApplicationController
 
   def driver_reject
     @service = Service.find params[:id]
+    authorize using: @service
+
     if @service.reject
       redirect_to services_url, notice: 'Service Rejected.'
     else
@@ -54,6 +62,8 @@ class ServicesController < ApplicationController
 
   def driver_finish
     @service = Service.find params[:id]
+    authorize using: @service
+
     if @service.finish
       redirect_to services_url, notice: 'Service Completed'
     else

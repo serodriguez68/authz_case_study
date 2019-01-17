@@ -1,6 +1,6 @@
 h1 Listing services
 
-= link_to 'Request Service', new_service_path, class: 'button success'
+= authz_link_to 'Request Service', new_service_path, {class: 'button success'}, skip_scoping: true
 
 table
   thead
@@ -45,10 +45,10 @@ table
               small = finished_on_info(s)
 
         td = safe_driver_name(s)
-        td = link_to 'Cancel', client_cancel_service_path(s), class: 'alert small  button',   method: :patch if s.can_cancel?
-        td = link_to 'Accept', driver_accept_service_path(s), class: 'small  button success', method: :patch if s.can_accept?
-        td = link_to 'Reject', driver_reject_service_path(s), class: 'small  button warning', method: :patch if s.can_reject?
-        td = link_to 'Finish', driver_finish_service_path(s), class: 'small  button', method: :patch if s.can_finish?
+        td = authz_link_to('Cancel', client_cancel_service_path(s), {class: 'alert small  button',   method: :patch}, using: s) if s.can_cancel?
+        td = authz_link_to('Accept', driver_accept_service_path(s), {class: 'small  button success', method: :patch}, using: s) if s.can_accept?
+        td = authz_link_to('Reject', driver_reject_service_path(s), {class: 'small  button warning', method: :patch}, using: s) if s.can_reject?
+        td = authz_link_to('Finish', driver_finish_service_path(s), {class: 'small  button', method: :patch}, using: s) if s.can_finish?
 
 
 
