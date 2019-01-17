@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.includes(:client, :city, :driver).all
+    @services = apply_authz_scopes(on: Service).includes(:client, :city, :driver).all
   end
 
 

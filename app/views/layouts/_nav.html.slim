@@ -2,11 +2,11 @@ nav.top-bar
   .top-bar-left
     ul.menu
       li.menu-text RUbber
-      li = link_to 'Clients', clients_path
-      li = link_to 'Services', services_path
-      li = link_to 'Drivers', drivers_path
-      li = link_to 'Cities', cities_path
-      li = link_to 'Staff', staff_members_path
+      li = authz_link_to 'Clients', clients_path, skip_scoping: true
+      li = authz_link_to 'Services', services_path, skip_scoping: true
+      li = authz_link_to 'Drivers', drivers_path, skip_scoping: true
+      li = authz_link_to 'Cities', cities_path, skip_scoping: true
+      li = authz_link_to 'Staff', staff_members_path, skip_scoping: true
       / li = link_to 'Authz Manager', '#'
 
   .top-bar-right
@@ -17,7 +17,7 @@ nav.top-bar
           span &nbsp
           span = current_user.email
         ul.menu
-          li = link_to 'My Client Profile', client_path(current_client) if current_client
-          li = link_to 'My Driver Profile', '#' if current_driver
+          li = authz_link_to 'My Client Profile', client_path(current_client), using: current_client if current_client
+          li = authz_link_to 'My Driver Profile', '#' if current_driver
           li = link_to 'Change Password', edit_user_registration_path(current_user)
           li = link_to "Logout", destroy_user_session_path, method: :delete

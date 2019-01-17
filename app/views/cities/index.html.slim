@@ -1,6 +1,6 @@
 h1 Listing cities
 
-= link_to 'New City', new_city_path, class: 'button'
+= authz_link_to 'New City', new_city_path, {class: 'button'}, skip_scoping: true
 
 table
   thead
@@ -17,7 +17,7 @@ table
         td = city.id
         td = city.name
         td = l city.created_at.to_date, format: :long
-        td = link_to 'Edit', edit_city_path(city)
-        td = link_to 'Destroy', city, data: { confirm: 'Are you sure?' }, method: :delete
+        td = authz_link_to 'Edit', edit_city_path(city), using: city
+        td = authz_link_to 'Destroy', city, {data: { confirm: 'Are you sure?' }, method: :delete}, using: city
 
 

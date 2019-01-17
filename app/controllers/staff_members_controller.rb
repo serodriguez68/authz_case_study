@@ -1,6 +1,8 @@
 class StaffMembersController < ApplicationController
+  around_action :verify_authorized
 
   def index
+    authorize skip_scoping: true
     @staff_members = StaffMember.all
   end
 
