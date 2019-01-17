@@ -1,6 +1,6 @@
 h1 Listing Staff
 
-= link_to 'New Staff member', new_staff_member_path, class: 'button'
+= authz_link_to 'New Staff member', new_staff_member_path, {class: 'button'}, skip_scoping: true
 
 table
   thead
@@ -20,6 +20,6 @@ table
         td = sm.name
         td = sm.user_email
         td = l sm.created_at.to_date, format: :short
-        td = link_to 'Edit Profile', edit_staff_member_path(sm)
+        td = authz_link_to 'Edit Profile', edit_staff_member_path(sm), skip_scoping: true
 
 
