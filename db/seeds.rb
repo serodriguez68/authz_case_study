@@ -40,6 +40,10 @@ StaffMember.create!(name: Faker::StarWars.character, user: user_gm)
 user_aa = User.create!(email: "aa@e.com", password: PWD, password_confirmation: PWD)
 StaffMember.create!(name: Faker::StarWars.character, user: user_aa)
 
+# -- Mixed profiles
+user_mel_ca_syd_cm = User.create!(email: "mel_ca_syd_cm@e.com", password: PWD, password_confirmation: PWD)
+StaffMember.create!(name: Faker::StarWars.character, user: user_mel_ca_syd_cm)
+
 # Services
 City.all.each do |city|
   client_ids = Client.all.pluck(:id).shuffle
