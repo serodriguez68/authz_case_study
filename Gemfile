@@ -70,3 +70,4 @@ gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 gem "autoprefixer-rails"
 gem 'sprockets-es6'
+gem 'database_cleaner'
