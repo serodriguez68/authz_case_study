@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.includes(:client, :city, :driver).all
+    @services = Service.includes(:client, :city, :driver).all.order(created_at: :desc)
   end
 
 
