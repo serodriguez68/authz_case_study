@@ -34,16 +34,54 @@ hr
       ' Use this demo along with
       a href='https://github.com/serodriguez68/authz_case_study' the source code&nbsp;
       ' to understand how Authz does its job.
-      ' Start by logging in with users that have different roles and
-      ' notice how the app changes based on the role.
-      strong All passwords are "123456789".
-
-    p
-      ' Then login with a user with the "Authorization Administrator" role and visit the
-      = link_to 'Authz Admin Panel', authz_path
-      '&nbsp; to see how easy it is to manage your authorization within the panel.
 
   .cell.small-12
+    .callout.primary
+      h4 Here are some things to try:
+      p
+        em All passwords are "123456789"
+
+      ol
+        li
+          p
+            'Log in as the 'Melbourne City Analyst' mel_ca@e.com and click
+            = link_to 'Services ', services_path
+            ' on the menu bar. Notice that he can only see Melbourne Services and
+            ' he can 'Reject' and 'Finish' services on behalf of the drivers.  Also note that
+            ' he cannot 'Cancel' services on behalf of the client (i.e. you cannot see a cancel button).
+
+        li
+          p
+            'Logout and now login as mel_ca_syd_cm@e.com, a user that is a 'Melbourne City Analyst and a Sydney City Manager'.
+            ' Go to
+            = link_to 'Services ', services_path
+            ' again.
+            ' Note that now the user is able to see services from both Melbourne and Sydney. Most importantly,
+            ' note that he is able to do
+            strong different actions&nbsp
+            ' on services from different cities according to the role descriptions.
+          p
+            ' Pretty cool huh? The best part is that Authz allows you to easily achieve this behaviour without having
+            ' to hard code any authorization rule.  Let's see how...
+
+        li
+          p
+            ' Open a different browser (or an incognito window) and log into the&nbsp
+            = link_to 'Authz Admin Panel ', authz_path
+            ' with the aa@e.com user (an Authorization Administrator).
+            ' Go to 'Roles' > click 'Sydney City Manager' > click 'Edit' and change the definition of the role
+            ' by adding the 'Driver accept service'
+            strong business process.
+          p
+            ' Go back to the mel_ca_syd_cm@e.com session, refresh and notice that now the user is able to 'Accept'
+            ' services on behalf of the driver.
+
+          p
+            ' In Authz all authorization rules are configured on the database so that you can change them and even
+            ' create and assign new roles without having to change a single line of code or re-deploy your application.
+
+  .cell.small-12
+    p Here is the complete list of users if you want to explore more:
     = render 'user_info', users: @users
 
 
