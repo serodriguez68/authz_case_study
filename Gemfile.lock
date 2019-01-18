@@ -259,7 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authz
+  authz (= 0.0.1.alpha3)
   autoprefixer-rails
   better_errors
   binding_of_caller
