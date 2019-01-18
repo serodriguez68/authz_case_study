@@ -1,12 +1,3 @@
-PATH
-  remote: ../authz
-  specs:
-    authz (0.0.1.alpha)
-      font-awesome-rails
-      jquery-rails
-      kaminari
-      rails (~> 5.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +47,11 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    authz (0.0.1.alpha3)
+      font-awesome-rails
+      jquery-rails
+      kaminari
+      rails (~> 5.0)
     autoprefixer-rails (9.4.5)
       execjs
     babel-source (5.8.35)
@@ -263,7 +259,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authz!
+  authz
   autoprefixer-rails
   better_errors
   binding_of_caller
