@@ -4,9 +4,9 @@ class ServicesController < ApplicationController
   # GET /services.json
   def index
     authorize skip_scoping: true
-    @services = apply_authz_scopes(on: Service).includes(:client, :city, :driver).all
+    @services = apply_authz_scopes(on: Service).includes(:client, :city, :driver).all.order(created_at: :desc)
   end
-  
+
   # GET /services/new
   def new
     authorize skip_scoping: true
