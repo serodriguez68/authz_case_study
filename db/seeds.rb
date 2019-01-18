@@ -224,3 +224,6 @@ user_gm.roles << [general_manager]
 
 # - Auth Admin
 user_aa.roles << [auth_admin]
+
+# - Mixed Profiles: Melbourne City Analyst + Sydney City Manager
+user_mel_ca_syd_cm.roles << [mel_city_analyst, syd_city_manager]
