@@ -47,11 +47,12 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    authz (0.0.1.alpha3)
+    authz (0.0.1.alpha4)
       font-awesome-rails
       jquery-rails
       kaminari
       rails (~> 5.0)
+      slim-rails
     autoprefixer-rails (9.4.5)
       execjs
     babel-source (5.8.35)
@@ -260,7 +261,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authz (= 0.0.1.alpha3)
+  authz (= 0.0.1.alpha4)
   autoprefixer-rails
   better_errors
   binding_of_caller

@@ -1,6 +1,11 @@
+# Run Authz seed script
+require 'rake'
+Rake::Task.clear # necessary to avoid tasks being loaded several times in dev mode
+Rails.application.load_tasks
+Rake::Task['authz:seed_admin'].invoke
+
 # Constants
 PWD = "123456789"
-
 
 # Cities
 mel = City.create!(name: 'Melbourne')
@@ -66,14 +71,13 @@ s.finish
 
 
 # Controller Actions
-Authz::ControllerAction.reachable_controller_actions.each do |controller, actions|
+Authz::ControllerAction.main_app_reachable_controller_actions.each do |controller, actions|
   actions.each do |action|
     Authz::ControllerAction.create!(
       controller: controller,
       action: action)
   end
 end
-# TODO: Add Authz Controller Actions (If necessary)
 
 
 # Business Processes
@@ -130,8 +134,8 @@ manage_staff = Authz::BusinessProcess.create!(name: 'Manage Staff', description:
 cas = Authz::ControllerAction.where(controller: 'staff_members')
 manage_staff.controller_actions << cas
 
-# - Auth Admin
-# TODO
+# - Authz
+manage_authorization = Authz::BusinessProcess.find_by!(code: 'manage_authorization')
 
 
 # Roles
@@ -157,7 +161,7 @@ general_manager = Authz::Role.create!(name: 'General Manager', description: 'des
 general_manager.business_processes << [list_client_profiles, update_client_profiles, list_services, client_cancel_service, driver_reject_service, driver_finish_service, list_driver_profiles, update_driver_profiles, manage_cities]
 
 auth_admin = Authz::Role.create!(name: 'Authorization Administrator', description: 'desc')
-auth_admin.business_processes << [manage_staff] # TODO: Add Authz Business Process
+auth_admin.business_processes << [manage_staff, manage_authorization]
 
 
 # Scoping Rules
