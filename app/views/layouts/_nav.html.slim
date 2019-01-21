@@ -7,7 +7,7 @@ nav.top-bar
       li = authz_link_to 'Drivers', drivers_path, skip_scoping: true
       li = authz_link_to 'Cities', cities_path, skip_scoping: true
       li = authz_link_to 'Staff', staff_members_path, skip_scoping: true
-      / li = link_to 'Authz Manager', '#'
+      li = authz_link_to 'Authorization Admin', authz.root_url, skip_scoping: true
 
   .top-bar-right
     ul.menu.dropdown data-dropdown-menu=''
