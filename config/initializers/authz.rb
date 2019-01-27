@@ -20,5 +20,5 @@ Authz.configure do |config|
   #
   # Authz will use the same cache store that you configure
   # for your app.
-  config.cross_request_caching = true
+  config.cross_request_caching = false
 end
