@@ -93,7 +93,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
+    connection_pool (2.2.2)
     crass (1.0.4)
+    dalli (2.7.9)
     database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     devise (4.5.0)
@@ -270,6 +272,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  connection_pool
+  dalli
   database_cleaner
   devise
   faker
