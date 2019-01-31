@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_01_16_125220) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authz_business_process_has_controller_actions", force: :cascade do |t|
-    t.integer "authz_controller_action_id"
-    t.integer "authz_business_process_id"
+    t.bigint "authz_controller_action_id"
+    t.bigint "authz_business_process_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authz_business_process_id"], name: "authz_bphca_business_process_index"
@@ -37,9 +40,9 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
   end
 
   create_table "authz_role_grants", force: :cascade do |t|
-    t.integer "authz_role_id", null: false
+    t.bigint "authz_role_id", null: false
     t.string "rolable_type", null: false
-    t.integer "rolable_id", null: false
+    t.bigint "rolable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authz_role_id"], name: "authz_role_grants_role_index"
@@ -47,8 +50,8 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
   end
 
   create_table "authz_role_has_business_processes", force: :cascade do |t|
-    t.integer "authz_business_process_id"
-    t.integer "authz_role_id"
+    t.bigint "authz_business_process_id"
+    t.bigint "authz_role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authz_business_process_id"], name: "authz_rhbp_business_process_index"
@@ -65,7 +68,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
 
   create_table "authz_scoping_rules", force: :cascade do |t|
     t.string "scopable"
-    t.integer "authz_role_id", null: false
+    t.bigint "authz_role_id", null: false
     t.string "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_clients_on_user_id"
@@ -90,21 +93,21 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
 
   create_table "drivers", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_drivers_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "city_id"
+    t.bigint "client_id"
+    t.bigint "city_id"
     t.string "pickup_address"
     t.string "drop_off_address"
     t.datetime "accepted_on"
     t.datetime "finished_on"
     t.datetime "cancelled_on"
-    t.integer "driver_id"
+    t.bigint "driver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_services_on_city_id"
@@ -114,7 +117,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
 
   create_table "staff_members", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_staff_members_on_user_id"
@@ -132,4 +135,16 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "authz_business_process_has_controller_actions", "authz_business_processes"
+  add_foreign_key "authz_business_process_has_controller_actions", "authz_controller_actions"
+  add_foreign_key "authz_role_grants", "authz_roles"
+  add_foreign_key "authz_role_has_business_processes", "authz_business_processes"
+  add_foreign_key "authz_role_has_business_processes", "authz_roles"
+  add_foreign_key "authz_scoping_rules", "authz_roles"
+  add_foreign_key "clients", "users"
+  add_foreign_key "drivers", "users"
+  add_foreign_key "services", "cities"
+  add_foreign_key "services", "clients"
+  add_foreign_key "services", "drivers"
+  add_foreign_key "staff_members", "users"
 end
