@@ -74,4 +74,4 @@ gem 'database_cleaner'
 gem 'dalli'
 gem 'connection_pool'
 
-gem 'authz', '= 0.0.1'
+gem 'authz', '= 0.0.2'
