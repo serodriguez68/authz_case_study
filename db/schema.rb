@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_125220) do
+ActiveRecord::Schema.define(version: 2019_02_11_063928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
     t.bigint "authz_business_process_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["authz_business_process_id", "authz_controller_action_id"], name: "authz_bphca_bp_ca", unique: true
     t.index ["authz_business_process_id"], name: "authz_bphca_business_process_index"
     t.index ["authz_controller_action_id"], name: "authz_bphca_controller_action_index"
   end
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
     t.string "action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["controller", "action"], name: "index_authz_controller_actions_on_controller_and_action", unique: true
   end
 
   create_table "authz_role_grants", force: :cascade do |t|
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authz_role_id"], name: "authz_role_grants_role_index"
+    t.index ["rolable_type", "rolable_id", "authz_role_id"], name: "authz_rgs_rolable_role", unique: true
     t.index ["rolable_type", "rolable_id"], name: "authz_role_grants_rolable_index"
   end
 
@@ -55,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["authz_business_process_id"], name: "authz_rhbp_business_process_index"
+    t.index ["authz_role_id", "authz_business_process_id"], name: "authz_rhpb_role_bp", unique: true
     t.index ["authz_role_id"], name: "authz_rhbp_role_index"
   end
 
@@ -72,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_125220) do
     t.string "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["authz_role_id", "scopable"], name: "authz_srs_role_scopable", unique: true
     t.index ["authz_role_id"], name: "index_authz_scoping_rules_on_authz_role_id"
     t.index ["keyword"], name: "index_authz_scoping_rules_on_keyword"
     t.index ["scopable"], name: "index_authz_scoping_rules_on_scopable"

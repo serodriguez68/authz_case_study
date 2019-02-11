@@ -47,7 +47,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    authz (0.0.2)
+    authz (0.0.3)
       font-awesome-rails
       jquery-rails
       kaminari
@@ -261,7 +261,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authz (= 0.0.2)
+  authz (= 0.0.3)
   autoprefixer-rails
   better_errors
   binding_of_caller
