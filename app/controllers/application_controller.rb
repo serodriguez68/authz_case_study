@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    services_path
+    if authorized_path? services_path, skip_scoping: true
+      services_path
+    else
+      super
+    end
   end
 end
