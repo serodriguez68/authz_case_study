@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def current_driver
     current_user.try(:driver)
   end
+
+  def after_sign_in_path_for(resource)
+    services_path
+  end
 end
