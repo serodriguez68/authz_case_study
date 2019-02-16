@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
       format.js{ render(js: "alert('#{msg}');") }
     end
   end
+
+  def after_sign_in_path_for(resource)
+    services_path
+  end
 end
